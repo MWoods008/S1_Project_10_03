@@ -1,0 +1,126 @@
+/*
+   New Perspectives on HTML and CSS, 7th Edition
+   Tutorial 8
+   Case Problem 3
+
+   Pixal Arts and Entertainment Animation Styles
+   Author: Max Woods
+   Date:  2.4.19 
+
+   Filename: 
+   
+   Sprite animation is created using the paa_bat.png, 
+   paa_bfly.png, and paa_fox.png image files.
+   
+   paa_bat.png has 40 frames
+   paa_bfly.png has 34 frames
+   paa_fox.png has 28 frames
+
+*/
+
+
+/* Transition Effects */
+/* basic navigation transitions to add fluidity */
+nav#gameLinks a {
+    position: relative;
+    color: white;
+    transition: .5s;
+}
+
+nav#gameLinks a:hover {
+    color: rgb(255, 194, 99);
+}
+
+nav#gameLinks a::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    width: 0%;
+    height: 8px;
+    background: linear-gradient(to right, rgb(237, 243, 71), rgb(188, 74, 0));
+    border-radius: 4px;
+    opacity: 0;
+    transition: .5s;
+}
+
+nav#gameLinks a:hover::after {
+    opacity: 1;
+    width: 100%;
+}
+
+
+/* Sprite Styles */
+/* placing each sprite on to the canvas using the given png files and adding animation loops to them */
+div#butterfly {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 60px;
+    left: -50px;
+    background: url('paa_bfly.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: playSprite 1s 3s steps(33) infinite, flyRight 6s cubic-bezier(0, 1, 0.73, 0) infinite;
+}
+
+div#bat {
+    position: absolute;
+    width: 40px;
+    height: 50px;
+    top: 100px;
+    left: -50px;
+    background: url('paa_bat.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: playSprite 2s steps(39) infinite, flyRight 8s linear infinite;
+}
+
+div#fox {
+    position: absolute;
+    width: 280px;
+    height: 260px;
+    bottom: 10px;
+    right: 10px;
+    background: url('paa_fox.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: playSprite 3.5s 4s steps(27) infinite;
+}
+
+
+/* Animation Styles */
+/* setting the background position for the play sprite key frame */
+@keyframes playSprite {
+
+    100% {
+        background-position: right center;
+    }
+}
+/* moving the position of the butterflies for each keyframe, like working in stop motion */
+@keyframes flyRight {
+    25% {
+        top: 150px;
+    }
+
+    50% {
+        top: 55px;
+    }
+
+    65% {
+        top: 120px;
+    }
+
+    90% {
+        top: 50px;
+    }
+
+    100% {
+        top: 80px;
+        left: 100%;
+    }
+}
+
